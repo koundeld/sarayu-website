@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sarayu — Orchard Stays · Manali</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #FAF3E8; --cream-dark: #EFE3CF; --parchment: #F5EBD8;
+  --warm-white: #FFFCF7; --terra: #C4785A; --burnt: #A84E30;
+  --blush: #DEB498; --stone: #A8957E; --bark: #7A6352;
+  --deepbark: #4A3020; --text-main: #4A3D30; --text-soft: #8A7868;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Jost', sans-serif; background: var(--warm-white); color: var(--text-main); overflow-x: hidden; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 24px 60px; transition: background 0.4s, padding 0.4s, box-shadow 0.4s; background: rgba(250,243,232,0.72); backdrop-filter: blur(8px); }
+nav.scrolled { background: rgba(74,48,32,0.97); padding: 16px 60px; box-shadow: 0 2px 24px rgba(0,0,0,0.18); backdrop-filter: none; }
+.nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; color: var(--burnt); text-decoration: none; transition: color 0.3s; }
+nav.scrolled .nav-logo { color: var(--blush); }
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-links a { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bark); text-decoration: none; transition: color 0.2s; }
+nav.scrolled .nav-links a { color: rgba(255,252,247,0.80); }
+.nav-links a:hover { color: var(--terra); }
+.nav-book { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--burnt); border: 1px solid rgba(122,99,82,0.45); padding: 10px 24px; text-decoration: none; transition: all 0.3s; }
+nav.scrolled .nav-book { color: rgba(255,252,247,0.88); border-color: rgba(255,252,247,0.35); }
+.nav-book:hover { background: var(--terra); border-color: var(--terra); color: var(--warm-white); }
+
+/* HERO */
+.hero { height: 100vh; position: relative; display: flex; align-items: flex-end; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; overflow: hidden; }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 5%; transform: scale(1.0); animation: heroZoom 22s ease-in-out alternate infinite; }
+@keyframes heroZoom { from { transform: scale(1.0); } to { transform: scale(1.06); } }
+.hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(22,10,4,0.90) 0%, rgba(22,10,4,0.72) 28%, rgba(22,10,4,0.28) 58%, rgba(22,10,4,0.08) 100%); }
+.hero-content { position: relative; z-index: 2; padding: 0 60px 100px; max-width: 780px; animation: fadeUp 1.4s ease both; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+.hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(50px, 7vw, 86px); font-weight: 300; line-height: 1.06; color: #FFF8F0; margin-bottom: 26px; text-shadow: 0 2px 32px rgba(15,6,2,0.65), 0 4px 80px rgba(15,6,2,0.45); }
+.hero-title em { font-style: italic; color: #F2C9A8; }
+.hero-sub { font-size: 15px; font-weight: 300; color: rgba(255,245,232,0.88); line-height: 1.78; max-width: 420px; margin-bottom: 48px; text-shadow: 0 1px 16px rgba(15,6,2,0.55); }
+.hero-cta { display: inline-flex; align-items: center; gap: 16px; background: rgba(196,120,90,0.90); color: var(--warm-white); text-decoration: none; padding: 16px 36px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; transition: all 0.3s; }
+.hero-cta:hover { background: var(--burnt); gap: 24px; }
+.hero-scroll { position: absolute; right: 60px; bottom: 90px; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 12px; color: rgba(255,250,240,0.40); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; }
+.hero-scroll-line { width: 1px; height: 54px; background: linear-gradient(to bottom, rgba(255,250,240,0.40), transparent); animation: scrollLine 2s ease-in-out infinite; }
+@keyframes scrollLine { 0%, 100% { opacity: 0.42; } 50% { opacity: 0.12; } }
+
+
+
+/* SECTION LABEL */
+.section-label { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--terra); display: flex; align-items: center; gap: 12px; margin-bottom: 22px; }
+.section-label::after { content: ''; display: inline-block; width: 26px; height: 1px; background: var(--blush); }
+
+/* ABOUT */
+.about { background: var(--warm-white); padding: 120px 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+.about-visual { position: relative; height: 570px; }
+.about-img-main { position: absolute; top: 0; left: 0; width: 78%; height: 84%; overflow: hidden; }
+.about-img-main img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.65s ease; }
+.about-img-main:hover img { transform: scale(1.04); }
+.about-img-accent { position: absolute; bottom: 0; right: 0; width: 52%; height: 50%; border: 10px solid var(--warm-white); overflow: hidden; }
+.about-img-accent img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.65s ease; }
+.about-img-accent:hover img { transform: scale(1.05); }
+.about-year { position: absolute; top: 16px; right: 10px; font-family: 'Cormorant Garamond', serif; font-size: 108px; font-weight: 300; color: rgba(74,61,48,0.065); line-height: 1; pointer-events: none; letter-spacing: -0.04em; }
+.about-text h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 54px); font-weight: 300; line-height: 1.18; margin-bottom: 28px; color: var(--text-main); }
+.about-text h2 em { font-style: italic; color: var(--terra); }
+.about-text p { font-size: 15px; font-weight: 300; line-height: 1.9; color: var(--text-soft); margin-bottom: 18px; }
+.about-detail { display: flex; gap: 40px; margin-top: 40px; padding-top: 36px; border-top: 1px solid var(--cream-dark); }
+.about-detail-num { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 300; color: var(--terra); line-height: 1; margin-bottom: 4px; }
+.about-detail-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--stone); }
+
+/* COTTAGES */
+.cottages { background: var(--parchment); padding: 120px 60px; }
+.cottages-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px; }
+.cottages-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 5vw, 64px); font-weight: 300; line-height: 1.1; color: var(--text-main); max-width: 400px; }
+.cottages-header p { font-size: 14px; font-weight: 300; line-height: 1.75; color: var(--text-soft); max-width: 300px; text-align: right; }
+.cottages-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; }
+.cottage-card { position: relative; overflow: hidden; }
+.cottage-img { height: 480px; overflow: hidden; }
+.cottage-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.65s ease; }
+.cottage-card:hover .cottage-img img { transform: scale(1.05); }
+.cottage-img::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(60,35,15,0.72) 0%, transparent 55%); z-index: 1; }
+.cottage-info { position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; padding: 32px; }
+.cottage-tag { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--blush); margin-bottom: 7px; }
+.cottage-name { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 300; color: var(--warm-white); margin-bottom: 10px; }
+.cottage-desc { font-size: 13px; font-weight: 300; color: rgba(255,252,247,0.65); line-height: 1.6; }
+
+/* CAFE */
+.cafe { background: var(--warm-white); display: grid; grid-template-columns: 1fr 1fr; min-height: 80vh; }
+.cafe-content { padding: 100px 80px; display: flex; flex-direction: column; justify-content: center; }
+.cafe-content h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(38px, 4vw, 56px); font-weight: 300; line-height: 1.12; color: var(--text-main); margin-bottom: 28px; }
+.cafe-content h2 em { font-style: italic; color: var(--terra); }
+.cafe-content p { font-size: 15px; line-height: 1.9; color: var(--text-soft); margin-bottom: 20px; max-width: 440px; }
+.cafe-items { margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.cafe-item { padding: 20px 0; border-top: 1px solid var(--cream-dark); }
+.cafe-item-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terra); margin-bottom: 6px; }
+.cafe-item-text { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--text-main); font-style: italic; }
+.cafe-visual { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; min-height: 500px; }
+.cafe-visual img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.cafe-visual-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(55,28,10,0.55) 0%, rgba(55,28,10,0.15) 60%, transparent 100%); }
+.cafe-visual-content { text-align: center; padding: 60px; position: relative; z-index: 1; }
+.cafe-visual-content h3 { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 300; font-style: italic; color: white; line-height: 1.2; margin-bottom: 20px; }
+.cafe-visual-content p { font-size: 12px; color: rgba(255,255,255,0.62); letter-spacing: 0.12em; text-transform: uppercase; }
+
+/* EXPERIENCES */
+.experiences { background: var(--parchment); padding: 120px 60px; }
+.exp-header { text-align: center; margin-bottom: 72px; }
+.exp-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 5vw, 66px); font-weight: 300; line-height: 1.1; margin-bottom: 18px; color: var(--text-main); }
+.exp-header h2 em { font-style: italic; color: var(--terra); }
+.exp-header p { font-size: 14px; font-weight: 300; color: var(--text-soft); max-width: 380px; margin: 0 auto; line-height: 1.78; }
+.exp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.exp-card { position: relative; overflow: hidden; }
+.exp-img { height: 300px; overflow: hidden; }
+.exp-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.55s ease; }
+.exp-card:hover .exp-img img { transform: scale(1.07); }
+.exp-img::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(55,32,14,0.70) 0%, transparent 60%); z-index: 1; }
+.exp-info { position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; padding: 22px; }
+.exp-name { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 400; color: var(--warm-white); margin-bottom: 5px; }
+.exp-type { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,250,240,0.58); }
+
+/* MISSION */
+.mission { background: linear-gradient(145deg, #9A6045 0%, #8A5035 40%, #A06548 72%, #8C4E30 100%); color: var(--warm-white); padding: 120px 60px; display: grid; grid-template-columns: 80px 1fr; gap: 80px; align-items: center; }
+.mission-label { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.50; writing-mode: vertical-rl; transform: rotate(180deg); align-self: center; }
+.mission-content h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(34px, 4vw, 56px); font-weight: 300; line-height: 1.2; margin-bottom: 32px; }
+.mission-content p { font-size: 16px; font-weight: 300; line-height: 1.92; opacity: 0.88; max-width: 640px; }
+.mission-line { width: 48px; height: 1px; background: rgba(255,252,247,0.30); margin: 32px 0; }
+.mission-quote { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 300; font-style: italic; opacity: 0.68; line-height: 1.58; }
+
+/* BOOKING */
+.booking { background: var(--bark); color: var(--warm-white); padding: 120px 60px; text-align: center; position: relative; overflow: hidden; }
+.booking::before { content: 'SARAYU'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Cormorant Garamond', serif; font-size: 180px; font-weight: 300; color: rgba(255,252,247,0.04); letter-spacing: 0.14em; white-space: nowrap; pointer-events: none; }
+.booking-inner { position: relative; z-index: 1; }
+.booking .section-label { justify-content: center; color: var(--blush); }
+.booking .section-label::after { background: var(--blush); }
+.booking h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(42px, 6vw, 78px); font-weight: 300; line-height: 1.1; margin-bottom: 22px; }
+.booking p { font-size: 15px; font-weight: 300; color: rgba(255,252,247,0.55); margin-bottom: 48px; line-height: 1.78; }
+.booking-btns { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; }
+.btn-primary { background: var(--terra); color: var(--warm-white); text-decoration: none; padding: 17px 44px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; transition: all 0.3s; display: inline-block; }
+.btn-primary:hover { background: var(--burnt); }
+.btn-outline { border: 1px solid rgba(255,252,247,0.28); color: var(--warm-white); text-decoration: none; padding: 17px 44px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; transition: all 0.3s; display: inline-block; }
+.btn-outline:hover { border-color: rgba(255,252,247,0.65); }
+
+/* FOOTER */
+footer { background: var(--deepbark); color: rgba(255,252,247,0.45); padding: 60px; display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 40px; align-items: start; }
+.footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 300; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cream); margin-bottom: 14px; }
+.footer-tagline { font-size: 12px; font-weight: 300; line-height: 1.68; letter-spacing: 0.04em; }
+.footer-col h4 { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,252,247,0.28); margin-bottom: 18px; }
+.footer-col p, .footer-col a { font-size: 13px; font-weight: 300; line-height: 1.88; color: rgba(255,252,247,0.45); text-decoration: none; display: block; transition: color 0.22s; }
+.footer-col a:hover { color: var(--blush); }
+.footer-bottom { background: #2A1E12; padding: 18px 60px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: rgba(255,252,247,0.18); letter-spacing: 0.1em; }
+
+/* FADE IN */
+.fade-in { opacity: 0; transform: translateY(22px); transition: opacity 0.95s ease, transform 0.95s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* MOBILE */
+@media (max-width: 768px) {
+  nav { padding: 20px 24px; } nav.scrolled { padding: 14px 24px; }
+  .nav-links { display: none; }
+  .hero-content { padding: 0 24px 72px; } .hero-scroll { display: none; }
+  .intro-strip { padding: 16px 24px; flex-wrap: wrap; gap: 10px; }
+  .about { padding: 72px 24px; grid-template-columns: 1fr; gap: 56px; } .about-visual { height: 400px; }
+  .cottages { padding: 72px 24px; } .cottages-header { flex-direction: column; gap: 16px; } .cottages-header p { text-align: left; } .cottages-grid { grid-template-columns: 1fr; }
+  .cafe { grid-template-columns: 1fr; min-height: auto; } .cafe-content { padding: 72px 24px; } .cafe-visual { min-height: 360px; }
+  .experiences { padding: 72px 24px; } .exp-grid { grid-template-columns: 1fr 1fr; }
+  .mission { padding: 72px 24px; grid-template-columns: 1fr; gap: 0; } .mission-label { display: none; }
+  .booking { padding: 80px 24px; }
+  footer { padding: 40px 24px; grid-template-columns: 1fr; }
+  .footer-bottom { padding: 16px 24px; flex-direction: column; gap: 6px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <a href="#" class="nav-logo">Sarayu</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#cottages">Cottages</a></li>
+    <li><a href="#cafe">Cafe</a></li>
+    <li><a href="#experiences">Experiences</a></li>
+  </ul>
+  <a href="#booking" class="nav-book">Book a Stay</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg">
+    <img src="images/hero_cottage_light.png" alt="Sarayu entrance at dusk">
+  </div>
+  <div class="hero-content">
+    <h1 class="hero-title">Where slow living<br>meets <em>conscious</em><br>hospitality.</h1>
+    <p class="hero-sub">Nestled within a working apple orchard — an intimate retreat built with intention, natural materials, and care.</p>
+    <a href="#about" class="hero-cta">Discover Sarayu &#8594;</a>
+  </div>
+  <div class="hero-scroll"><div class="hero-scroll-line"></div>Scroll</div>
+</section>
+
+
+
+<section class="about fade-in" id="about">
+  <div class="about-visual">
+    <div class="about-img-main">
+      <img src="images/living.jpeg" alt="Sarayu living room">
+    </div>
+    <div class="about-img-accent">
+      <img src="images/window.jpeg" alt="Mountain view from window">
+    </div>
+    <div class="about-year">2024</div>
+  </div>
+  <div class="about-text">
+    <div class="section-label">Our Story</div>
+    <h2>Built with<br><em>intention</em>,<br>for the mindful.</h2>
+    <p>Sarayu is an intimate retreat carved into a working apple orchard in Manali — handcrafted using recycled natural materials, local sourcing, and eco-conscious practices that leave the landscape undisturbed.</p>
+    <p>Here, luxury is not excess. It is space, silence, and care. Two private cottages. A stream on one side. An orchard on the other.</p>
+    <div class="about-detail">
+      <div class="about-detail-item">
+        <div class="about-detail-num">2</div>
+        <div class="about-detail-label">Private Cottages</div>
+      </div>
+      <div class="about-detail-item">
+        <div class="about-detail-num">1</div>
+        <div class="about-detail-label">Farm Cafe</div>
+      </div>
+      <div class="about-detail-item">
+        <div class="about-detail-num">&#8734;</div>
+        <div class="about-detail-label">Moments of Stillness</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cottages fade-in" id="cottages">
+  <div class="cottages-header">
+    <h2>Two cottages.<br>Entirely yours.</h2>
+    <p>Each space is handcrafted with recycled natural materials — designed for privacy, presence, and deep rest.</p>
+  </div>
+  <div class="cottages-grid">
+    <div class="cottage-card">
+      <div class="cottage-img">
+        <img src="images/cottage_1.jpeg" alt="The Orchard Cottage">
+      </div>
+      <div class="cottage-info">
+        <div class="cottage-tag">Cottage One</div>
+        <div class="cottage-name">The Orchard Cottage</div>
+        <div class="cottage-desc">Stream views &middot; Private deck &middot; Handcrafted interiors</div>
+      </div>
+    </div>
+    <div class="cottage-card">
+      <div class="cottage-img">
+        <img src="images/cottage_2.jpeg" alt="The Stone Cottage">
+      </div>
+      <div class="cottage-info">
+        <div class="cottage-tag">Cottage Two</div>
+        <div class="cottage-name">The Stone Cottage</div>
+        <div class="cottage-desc">Orchard views &middot; Stone and timber &middot; Full privacy</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cafe fade-in" id="cafe">
+  <div class="cafe-content">
+    <div class="section-label">Farm to Table</div>
+    <h2>The Farm<br><em>Cafe &amp; Bakery</em></h2>
+    <p>The cafe at Sarayu is intimate and seasonally driven — an extension of the land itself. Rooted in restraint and quality, guided by the orchard.</p>
+    <p>Slow breakfasts, freshly baked breads, curated mountain lunches, and evenings that feel warm and considered.</p>
+    <div class="cafe-items">
+      <div class="cafe-item">
+        <div class="cafe-item-label">Morning</div>
+        <div class="cafe-item-text">Slow breakfasts</div>
+      </div>
+      <div class="cafe-item">
+        <div class="cafe-item-label">Baking</div>
+        <div class="cafe-item-text">Artisan breads</div>
+      </div>
+      <div class="cafe-item">
+        <div class="cafe-item-label">Sourcing</div>
+        <div class="cafe-item-text">Orchard &amp; local</div>
+      </div>
+      <div class="cafe-item">
+        <div class="cafe-item-label">Philosophy</div>
+        <div class="cafe-item-text">Seasonal menus</div>
+      </div>
+    </div>
+  </div>
+  <div class="cafe-visual">
+    <img src="images/bakery_light.png" alt="Artisan bakery at Sarayu">
+    <div class="cafe-visual-overlay"></div>
+    <div class="cafe-visual-content">
+      <h3>Dining is Part<br>of the<br>Experience</h3>
+      <p>Seasonally driven &middot; Orchard sourced</p>
+    </div>
+  </div>
+</section>
+
+<section class="experiences fade-in" id="experiences">
+  <div class="exp-header">
+    <div class="section-label" style="justify-content:center">Add-on Experiences</div>
+    <h2>Go <em>beyond</em><br>the cottage.</h2>
+    <p>Curated experiences to connect you with the landscape, the people, and yourself.</p>
+  </div>
+  <div class="exp-grid">
+    <div class="exp-card">
+      <div class="exp-img">
+        <img src="images/path.jpeg" alt="Garden path">
+      </div>
+      <div class="exp-info">
+        <div class="exp-name">Village Walks</div>
+        <div class="exp-type">Guided &middot; Half Day</div>
+      </div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-img">
+        <img src="images/path_wind.jpeg" alt="Orchard path">
+      </div>
+      <div class="exp-info">
+        <div class="exp-name">Mountain Hikes</div>
+        <div class="exp-type">Guided &middot; Full Day</div>
+      </div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-img">
+        <img src="images/bakery_light.png" alt="Farm breakfast">
+      </div>
+      <div class="exp-info">
+        <div class="exp-name">Farm Breakfasts</div>
+        <div class="exp-type">Private &middot; Morning</div>
+      </div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-img">
+        <img src="images/cafe.jpeg" alt="Farm cafe">
+      </div>
+      <div class="exp-info">
+        <div class="exp-name">Farm Cafe</div>
+        <div class="exp-type">Open Daily</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mission fade-in">
+  <div class="mission-label">Our Mission</div>
+  <div class="mission-content">
+    <h2>A retreat built<br>to slow you down.</h2>
+    <p>To create a consciously built mountain retreat that nurtures slow living, meaningful connection, and deep respect for nature — offering guests a quiet space to pause, breathe, and return to themselves.</p>
+    <div class="mission-line"></div>
+    <div class="mission-quote">"Luxury is not excess.<br>It is space, silence, and care."</div>
+  </div>
+</section>
+
+<section class="booking fade-in" id="booking">
+  <div class="booking-inner">
+    <div class="section-label">Reserve Your Stay</div>
+    <h2>Come. Pause.<br>Breathe.</h2>
+    <p>Only two cottages. Availability is limited.<br>Reach out to begin your Sarayu experience.</p>
+    <div class="booking-btns">
+      <a href="tel:+919916301778" class="btn-primary">Call Us</a>
+      <a href="#about" class="btn-outline">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="footer-brand">Sarayu</div>
+    <div class="footer-tagline">A conscious farmstay<br>in the apple orchards<br>of Manali.</div>
+  </div>
+  <div class="footer-col">
+    <h4>Navigate</h4>
+    <a href="#about">About</a>
+    <a href="#cottages">Cottages</a>
+    <a href="#cafe">Cafe &amp; Bakery</a>
+    <a href="#experiences">Experiences</a>
+    <a href="#booking">Book a Stay</a>
+  </div>
+  <div class="footer-col">
+    <h4>Find Us</h4>
+    <p>Shanag, Manali</p>
+    <p>Himachal Pradesh, India</p>
+    <br>
+    <a href="tel:+919916301778">+91 99163 01778</a>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>&#169; 2024 Sarayu Orchard Stays. All rights reserved.</span>
+  <span>Made with intention.</span>
+</div>
+
+<script>
+var nav = document.getElementById('mainNav');
+window.addEventListener('scroll', function() {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.10 });
+
+document.querySelectorAll('.fade-in').forEach(function(el) {
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
