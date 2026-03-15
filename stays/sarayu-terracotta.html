@@ -153,20 +153,85 @@ footer { background: var(--deepbark); color: rgba(255,252,247,0.45); padding: 60
 .fade-in { opacity: 0; transform: translateY(22px); transition: opacity 0.95s ease, transform 0.95s ease; }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-/* MOBILE */
+
+/* ── RESPONSIVE ── */
 @media (max-width: 768px) {
-  nav { padding: 20px 24px; } nav.scrolled { padding: 14px 24px; }
+
+  /* NAV */
+  nav { padding: 14px 20px; backdrop-filter: blur(8px); }
+  nav.scrolled { padding: 12px 20px; }
   .nav-links { display: none; }
-  .hero-content { padding: 0 24px 72px; } .hero-scroll { display: none; }
-  .intro-strip { padding: 16px 24px; flex-wrap: wrap; gap: 10px; }
-  .about { padding: 72px 24px; grid-template-columns: 1fr; gap: 56px; } .about-visual { height: 400px; }
-  .cottages { padding: 72px 24px; } .cottages-header { flex-direction: column; gap: 16px; } .cottages-header p { text-align: left; } .cottages-grid { grid-template-columns: 1fr; }
-  .cafe { grid-template-columns: 1fr; min-height: auto; } .cafe-content { padding: 72px 24px; } .cafe-visual { min-height: 360px; }
-  .experiences { padding: 72px 24px; } .exp-grid { grid-template-columns: 1fr 1fr; }
-  .mission { padding: 72px 24px; grid-template-columns: 1fr; gap: 0; } .mission-label { display: none; }
-  .booking { padding: 80px 24px; }
-  footer { padding: 40px 24px; grid-template-columns: 1fr; }
-  .footer-bottom { padding: 16px 24px; flex-direction: column; gap: 6px; text-align: center; }
+  .nav-logo { font-size: 18px; }
+  .nav-book { font-size: 10px; padding: 8px 14px; }
+
+  /* HERO */
+  .hero-content { padding: 0 20px 56px; }
+  .hero-title { font-size: clamp(32px, 9vw, 46px); line-height: 1.08; margin-bottom: 14px; }
+  .hero-sub { font-size: 13px; max-width: 100%; margin-bottom: 28px; }
+  .hero-cta { padding: 14px 24px; font-size: 10px; width: 100%; justify-content: center; }
+  .hero-scroll { display: none; }
+
+  /* ABOUT */
+  .about { padding: 56px 20px; grid-template-columns: 1fr; gap: 36px; }
+  .about-visual { height: 320px; }
+  .about-img-accent { width: 46%; height: 46%; border-width: 6px; }
+  .about-year { font-size: 70px; }
+  .about-text h2 { font-size: clamp(28px, 7vw, 38px); }
+  .about-text p { font-size: 14px; }
+  .about-detail { gap: 20px; flex-wrap: wrap; }
+  .about-detail-num { font-size: 32px; }
+
+  /* COTTAGES */
+  .cottages { padding: 56px 20px; }
+  .cottages-header { flex-direction: column; align-items: flex-start; gap: 10px; margin-bottom: 28px; }
+  .cottages-header h2 { font-size: clamp(28px, 7vw, 38px); }
+  .cottages-header p { text-align: left; max-width: 100%; font-size: 13px; }
+  .cottages-grid { grid-template-columns: 1fr; gap: 12px; }
+  .cottage-img { height: 300px; }
+  .cottage-name { font-size: 24px; }
+
+  /* CAFE */
+  .cafe { grid-template-columns: 1fr; min-height: auto; }
+  .cafe-content { padding: 48px 20px 32px; }
+  .cafe-content h2 { font-size: clamp(26px, 7vw, 36px); }
+  .cafe-content p { font-size: 14px; max-width: 100%; }
+  .cafe-items { grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .cafe-visual { min-height: 260px; }
+  .cafe-visual-content h3 { font-size: 32px; }
+  .cafe-visual-content { padding: 28px 20px; }
+
+  /* EXPERIENCES */
+  .experiences { padding: 56px 20px; }
+  .exp-header h2 { font-size: clamp(28px, 7vw, 38px); }
+  .exp-header p { font-size: 13px; }
+  .exp-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .exp-img { height: 200px; }
+  .exp-name { font-size: 17px; }
+
+  /* MISSION */
+  .mission { padding: 56px 20px; grid-template-columns: 1fr; gap: 0; }
+  .mission-label { display: none; }
+  .mission-content h2 { font-size: clamp(26px, 7vw, 36px); }
+  .mission-content p { font-size: 14px; }
+  .mission-quote { font-size: 17px; }
+
+  /* BOOKING */
+  .booking { padding: 60px 20px; }
+  .booking h2 { font-size: clamp(32px, 8vw, 46px); }
+  .booking p { font-size: 13px; }
+  .booking-btns { flex-direction: column; align-items: center; gap: 12px; }
+  .btn-primary, .btn-outline { width: 100%; text-align: center; padding: 16px 24px; }
+
+  /* FOOTER */
+  footer { padding: 40px 20px; grid-template-columns: 1fr; gap: 28px; }
+  .footer-bottom { padding: 16px 20px; flex-direction: column; gap: 6px; text-align: center; font-size: 10px; }
+}
+
+@media (max-width: 420px) {
+  .exp-grid { grid-template-columns: 1fr; }
+  .cafe-items { grid-template-columns: 1fr; }
+  .about-visual { height: 260px; }
+  .cottage-img { height: 240px; }
 }
 </style>
 </head>
