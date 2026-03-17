@@ -1,75 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Sarayu Themes</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sarayu Website Themes</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <style>
-    body{
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 40px;
-    }
+body {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  background: #FAF6F0;
+  color: #3A2E24;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+}
 
-    nav{
-      margin-bottom: 30px;
-    }
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: #3A2E24;
+  margin-bottom: 20px;
+}
 
-    nav a{
-      text-decoration: none;
-      color: white;
-      padding: 12px 20px;
-      margin: 10px;
-      border-radius: 6px;
-      display: inline-block;
-      font-size: 16px;
-    }
+.divider {
+  width: 40px;
+  height: 1px;
+  background: #C8B8A4;
+  margin: 0 auto 40px;
+}
 
-    /* Green button */
-    .green{
-      background-color: #4b6f44;
-    }
+.message {
+  font-size: 15px;
+  color: #6B5E52;
+  line-height: 1.8;
+  max-width: 420px;
+  text-align: center;
+  margin-bottom: 48px;
+}
 
-    .green:hover{
-      background-color: #355432;
-    }
+.buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
-    /* Terracotta button */
-    .terracotta{
-      background-color: #8b4a2f;
-    }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+.btn::after { content: '→'; }
 
-    .terracotta:hover{
-      background-color: #6e3823;
-    }
+.btn-terra { background: #A84E30; }
+.btn-terra:hover { background: #8C3E22; gap: 16px; }
 
-    .section{
-      margin: 40px 0;
-    }
-
-    .message{
-      font-size: 18px;
-      color: #444;
-      margin: 20px 0;
-    }
-  </style>
+.btn-green { background: #4A5E38; }
+.btn-green:hover { background: #374629; gap: 16px; }
+</style>
 </head>
-
 <body>
 
 <h1>Sarayu Website Themes</h1>
+<div class="divider"></div>
 
-<div class="section">
+<p class="message">
+  Hello ji 👋<br><br>
+  I want to present two design types. Terracotta, which has earthy vibe and Green which has nature vibe.
+</p>
 
-<div class="message">
-  Hello ji 👋 <br><br>
-  I want to present two design types. Terracota, which has earthy vibe and Green which has nature vibe.
-</div>
-
-<nav>
-  <a class="terracotta" href="stays/sarayu-terracotta.html">Sarayu Terracotta</a>
-  <a class="green" href="stays/sarayu-green.html">Sarayu Green</a>
-</nav>
-
+<div class="buttons">
+  <a class="btn btn-terra" href="stays/sarayu-terracotta.html">Sarayu Terracotta</a>
+  <a class="btn btn-green" href="stays/sarayu-green.html">Sarayu Green</a>
 </div>
 
 </body>

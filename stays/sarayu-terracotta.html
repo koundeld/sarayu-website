@@ -164,74 +164,78 @@ footer { background: var(--deepbark); color: rgba(255,252,247,0.45); padding: 60
   .nav-logo { font-size: 18px; }
   .nav-book { font-size: 10px; padding: 8px 14px; }
 
-  /* HERO */
-  .hero-content { padding: 0 20px 56px; }
-  .hero-title { font-size: clamp(32px, 9vw, 46px); line-height: 1.08; margin-bottom: 14px; }
-  .hero-sub { font-size: 13px; max-width: 100%; margin-bottom: 28px; }
-  .hero-cta { padding: 14px 24px; font-size: 10px; width: 100%; justify-content: center; }
+  /* HERO — landscape image fix, CTA always in frame */
+  .hero { height: 75vw; min-height: 260px; max-height: 92vh; padding-top: 56px; }
+  .hero-bg img { object-position: center center; }
+  .hero-content { padding: 0 20px 16px; display: flex; flex-direction: column; justify-content: flex-end; }
+  .hero-title { font-size: clamp(16px, 4.5vw, 22px); line-height: 1.15; margin-bottom: 8px; }
+  .hero-sub { display: none; }
+  .hero-cta { padding: 10px 18px; font-size: 10px; width: auto; align-self: flex-start; }
   .hero-scroll { display: none; }
 
-  /* ABOUT */
-  .about { padding: 56px 20px; grid-template-columns: 1fr; gap: 36px; }
-  .about-visual { height: 320px; }
-  .about-img-accent { width: 46%; height: 46%; border-width: 6px; }
-  .about-year { font-size: 70px; }
-  .about-text h2 { font-size: clamp(28px, 7vw, 38px); }
-  .about-text p { font-size: 14px; }
-  .about-detail { gap: 20px; flex-wrap: wrap; }
-  .about-detail-num { font-size: 32px; }
+  /* ABOUT — image + text in one viewport, image on top */
+  .about { padding: 36px 20px; grid-template-columns: 1fr; gap: 20px; }
+  .about-visual { height: 220px; }
+  .about-img-main { width: 100%; height: 100%; position: relative; }
+  .about-img-accent { display: none; }
+  .about-year { display: none; }
+  .about-text h2 { font-size: clamp(24px, 6vw, 32px); margin-bottom: 12px; }
+  .about-text p { font-size: 13px; margin-bottom: 10px; }
+  .about-detail { gap: 16px; flex-wrap: wrap; margin-top: 20px; padding-top: 20px; }
+  .about-detail-num { font-size: 28px; }
+  .about-detail-label { font-size: 9px; }
 
   /* COTTAGES */
-  .cottages { padding: 56px 20px; }
-  .cottages-header { flex-direction: column; align-items: flex-start; gap: 10px; margin-bottom: 28px; }
-  .cottages-header h2 { font-size: clamp(28px, 7vw, 38px); }
+  .cottages { padding: 40px 20px; }
+  .cottages-header { flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 20px; }
+  .cottages-header h2 { font-size: clamp(26px, 7vw, 34px); }
   .cottages-header p { text-align: left; max-width: 100%; font-size: 13px; }
-  .cottages-grid { grid-template-columns: 1fr; gap: 12px; }
-  .cottage-img { height: 300px; }
-  .cottage-name { font-size: 24px; }
+  .cottages-grid { grid-template-columns: 1fr; gap: 10px; }
+  .cottage-img { height: 260px; }
+  .cottage-name { font-size: 22px; }
 
-  /* CAFE */
-  .cafe { grid-template-columns: 1fr; min-height: auto; }
-  .cafe-content { padding: 48px 20px 32px; }
-  .cafe-content h2 { font-size: clamp(26px, 7vw, 36px); }
-  .cafe-content p { font-size: 14px; max-width: 100%; }
-  .cafe-items { grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
-  .cafe-visual { min-height: 260px; }
-  .cafe-visual-content h3 { font-size: 32px; }
-  .cafe-visual-content { padding: 28px 20px; }
+  /* CAFE — content on top, image below (not shifted sideways) */
+  .cafe { grid-template-columns: 1fr; min-height: auto; display: flex; flex-direction: column; }
+  .cafe-content { padding: 40px 20px 24px; order: 1; }
+  .cafe-visual { order: 2; min-height: 240px; max-height: 260px; }
+  .cafe-content h2 { font-size: clamp(24px, 6vw, 32px); margin-bottom: 16px; }
+  .cafe-content p { font-size: 13px; max-width: 100%; }
+  .cafe-items { grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+  .cafe-visual-content h3 { font-size: 28px; }
+  .cafe-visual-content { padding: 20px; }
 
   /* EXPERIENCES */
-  .experiences { padding: 56px 20px; }
-  .exp-header h2 { font-size: clamp(28px, 7vw, 38px); }
+  .experiences { padding: 40px 20px; }
+  .exp-header h2 { font-size: clamp(26px, 7vw, 34px); }
   .exp-header p { font-size: 13px; }
-  .exp-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .exp-img { height: 200px; }
-  .exp-name { font-size: 17px; }
+  .exp-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .exp-img { height: 180px; }
+  .exp-name { font-size: 16px; }
 
   /* MISSION */
-  .mission { padding: 56px 20px; grid-template-columns: 1fr; gap: 0; }
+  .mission { padding: 48px 20px; grid-template-columns: 1fr; gap: 0; }
   .mission-label { display: none; }
-  .mission-content h2 { font-size: clamp(26px, 7vw, 36px); }
-  .mission-content p { font-size: 14px; }
-  .mission-quote { font-size: 17px; }
+  .mission-content h2 { font-size: clamp(24px, 6vw, 32px); }
+  .mission-content p { font-size: 13px; }
+  .mission-quote { font-size: 16px; }
 
   /* BOOKING */
-  .booking { padding: 60px 20px; }
-  .booking h2 { font-size: clamp(32px, 8vw, 46px); }
+  .booking { padding: 48px 20px; }
+  .booking h2 { font-size: clamp(28px, 7vw, 40px); }
   .booking p { font-size: 13px; }
-  .booking-btns { flex-direction: column; align-items: center; gap: 12px; }
-  .btn-primary, .btn-outline { width: 100%; text-align: center; padding: 16px 24px; }
+  .booking-btns { flex-direction: column; align-items: center; gap: 10px; }
+  .btn-primary, .btn-outline { width: 100%; text-align: center; padding: 14px 20px; }
 
   /* FOOTER */
-  footer { padding: 40px 20px; grid-template-columns: 1fr; gap: 28px; }
-  .footer-bottom { padding: 16px 20px; flex-direction: column; gap: 6px; text-align: center; font-size: 10px; }
+  footer { padding: 36px 20px; grid-template-columns: 1fr; gap: 24px; }
+  .footer-bottom { padding: 14px 20px; flex-direction: column; gap: 4px; text-align: center; font-size: 10px; }
 }
 
 @media (max-width: 420px) {
-  .exp-grid { grid-template-columns: 1fr; }
-  .cafe-items { grid-template-columns: 1fr; }
-  .about-visual { height: 260px; }
-  .cottage-img { height: 240px; }
+  .exp-grid { grid-template-columns: 1fr 1fr; }
+  .cafe-items { grid-template-columns: 1fr 1fr; }
+  .about-visual { height: 180px; }
+  .cottage-img { height: 220px; }
 }
 </style>
 </head>
